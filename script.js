@@ -2,14 +2,36 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 const saveBtn = $(".saveBtn");
+const timeBlock = $(".time-block");
 const currentDay = $("#currentDay");
-var today = dayjs();
+const container = $("#containerID");
+const today = dayjs();
+const workingHours = [9, 10, 11, 12, 1, 2, 3, 4, 5];
+
+let currentHour = `hour-${dayjs().format("h")}`;
 
 $(document).ready(() => {
-  currentDay.append(today.format("dddd, MMMM DD, YYYY"));
-  // test code snippet
-  // saveBtn.css({ color: "red", background: "darkgray" });
+  console.log(currentHour);
+
+  workingHours.forEach((hour) => {
+    container.append(
+      `
+  <div id="hour-${hour}" class="row time-block">
+    <div class="col-2 col-md-1 hour text-center py-3">${hour}:00</div>
+    <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+    <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+      <i class="fas fa-save" aria-hidden="true"></i>
+    </button>
+  </div>
+      `
+    );
+    console.log(hour + "added!");
+  });
 });
+currentDay.append(today.format("dddd, MMMM DD, YYYY"));
+container.append();
+// test code snippet
+// saveBtn.css({ color: "red", background: "darkgray" });
 
 $(function () {
   // TODO: Add a listener for click events on the save button. This code should

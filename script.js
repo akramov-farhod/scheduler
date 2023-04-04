@@ -3,33 +3,66 @@
 // in the html.
 const saveBtn = $(".saveBtn");
 const timeBlock = $(".time-block");
-const currentDay = $("#currentDay");
+const currentTime = $("#currentTime");
 const container = $("#containerID");
 const today = dayjs();
-const workingHours = [9, 10, 11, 12, 1, 2, 3, 4, 5];
-
-let currentHour = `hour-${dayjs().format("h")}`;
+const workingHours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+let timeBlocks = [];
+let currentHour = dayjs().format("HH");
 
 $(document).ready(() => {
-  console.log(currentHour);
-
+  // display current [TIME, DAY-of-the-WEEK, MONTH-&-DATE, YEAR]
+  currentTime.append(today.format("HH:mm dddd, MMMM DD, YYYY"));
+  // iterate through workingHours array
+  // to populate timeBlocks array which i will use to set classes.
   workingHours.forEach((hour) => {
+    if (hour == currentHour) {
+      timeBlocks.push({
+        hour: hour,
+        status: "present",
+      });
+    } else if (hour < currentHour) {
+      timeBlocks.push({
+        hour: hour,
+        status: "past",
+      });
+    } else if (hour > currentHour && hour <= 17) {
+      timeBlocks.push({
+        hour: hour,
+        status: "future",
+      });
+    } else {
+      console.log(
+        "You are trying to access the Scheduler outside of Working Hours"
+      );
+    }
+    console.log(
+      "Comparing --> " +
+        hour +
+        " <-- to Current Hour --> " +
+        currentHour +
+        " <--"
+    );
+  });
+  console.log(timeBlocks);
+  // iterate through workingHoursStatys array
+  // to populate HTML document with timeBlock divs
+  // by adding class based on comparison of workingHour and currentHour
+  // past present and future are possible outcomes
+  timeBlocks.forEach((timeBlock) => {
     container.append(
-      `
-  <div id="hour-${hour}" class="row time-block">
-    <div class="col-2 col-md-1 hour text-center py-3">${hour}:00</div>
-    <textarea class="col-8 col-md-10 description" rows="3"> </textarea>
+      `<div id=${timeBlock.hour} class="row time-block past ${timeBlock.status}">
+    <div class="col-2 col-md-1 hour text-center py-3">${timeBlock.hour}:00</div>
+    <textarea class="col-8 col-md-10 description" rows="3">
+    </textarea>
     <button class="btn saveBtn col-2 col-md-1" aria-label="save">
       <i class="fas fa-save" aria-hidden="true"></i>
     </button>
-  </div>
-      `
+  </div>`
     );
-    console.log(hour + "added!");
   });
 });
-currentDay.append(today.format("dddd, MMMM DD, YYYY"));
-container.append();
+
 // test code snippet
 // saveBtn.css({ color: "red", background: "darkgray" });
 
@@ -53,3 +86,13 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+// `<div id=${timeblock.hour} class="row time-block past ${timeblock.status}">
+//   <div class="col-2 col-md-1 hour text-center py-3">${timeblock.hour}:00</div>
+//   <textarea class="col-8 col-md-10 description" rows="3">
+//     {" "}
+//   </textarea>
+//   <button class="btn saveBtn col-2 col-md-1" aria-label="save">
+//     <i class="fas fa-save" aria-hidden="true"></i>
+//   </button>
+// </div>`;

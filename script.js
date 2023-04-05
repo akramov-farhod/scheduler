@@ -95,5 +95,6 @@ $(document).ready(function () {
     Event: ${textAreaValue}
     Time Slot: ${parentID}:00
     Has been SUCCESSFULLY saved to Local Storage!`);
+    location.reload(true);
   });
 });

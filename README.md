@@ -11,10 +11,11 @@ A simple application that allows user to edit events and keep data persistent us
 ## Table of Contents
 
 1. [Installation](#Installation)
-2. [Usage](#Usage)
-3. [Contributing](#Contributing)
-4. [Tests](#Tests)
-5. [Questions](#Questions)
+2. [Screenshots](#Screenshots)
+3. [Usage](#Usage)
+4. [Contributing](#Contributing)
+5. [Tests](#Tests)
+6. [Questions](#Questions)
 
 ## Installation
 
@@ -25,6 +26,16 @@ npm i
 ```
 
 and application should be ready to run
+
+## Screenshots
+
+<details>
+
+![landing-view](/assets/landingView.png "Landing View")
+
+![added-events](/assets/addedEvents.png "Added Events")
+
+</details>
 
 ## Usage
 

@@ -10,14 +10,14 @@ let save11btn = $("#11-btn");
 const workingHours = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 let timeBlocks = [];
 // let currentHour = dayjs().format("HH");
-let currentHour = dayjs().format("HH");
+let currentHour = 11;
 
 // $(".saveBtn").click(function () {
 //   console.log("success");
 // });
 $(document).ready(function () {
   // display current [TIME, DAY-of-the-WEEK, MONTH-&-DATE, YEAR]
-  currentTime.append(today.format("HH:mm dddd, MMMM DD, YYYY"));
+  currentTime.append(today.format("11:" + "mm dddd, MMMM DD, YYYY"));
 
   // iterate through workingHours array
   // to populate timeBlocks array which i will use to set classes.
